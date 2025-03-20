@@ -1,0 +1,48 @@
+﻿@using cimenOtoV11.Models
+@model cimenOtoV11.Models.tbl_User
+@{
+    ViewBag.Title = "Üye Detayı | Oto Yedek Parça | Çimen Oto";
+    <link rel="icon" type="image/png" href="/Content/images/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="color:white;">ÜYE GÜNCELLE</h2>
+
+@using (Html.BeginForm("uyeGuncelle", "Admin", FormMethod.Post))
+{
+    <div>
+        <table class="table-bordered" style="color:white; width:100%;">
+            <tr>
+                <td>Kullanacı İD:</td>
+                <td>@Html.TextBoxFor(x => x.kulID, new { @class = "form-control", @readonly = "readonly" })</td>
+            </tr>
+            <tr>
+                <td>Adı:</td>
+                <td>@Html.TextBoxFor(x => x.ad, new { @class = "form-control", @readonly = "readonly" })</td>
+            </tr>
+            <tr>
+                <td>Soyadı:</td>
+                <td>@Html.TextBoxFor(x => x.soyad, new { @class = "form-control", @readonly = "readonly" })</td>
+            </tr>
+            <tr>
+                <td>Kullanacı Adı:</td>
+                <td>@Html.TextBoxFor(x => x.userName, new { @class = "form-control", @readonly = "readonly" })</td>
+            </tr>
+            <tr>
+                <td>Şifre:</td>
+                <td>@Html.TextBoxFor(x => x.password, new { @class = "form-control" })</td>
+            </tr>
+            <tr>
+                <td>Mail:</td>
+                <td>@Html.TextBoxFor(x => x.eMail, new { @class = "form-control" })</td>
+            </tr>
+            <tr>
+                <td>Tel:</td>
+                <td>@Html.TextBoxFor(x => x.telNo, new { @class = "form-control" })</td>
+            </tr>
+        </table>
+    </div>
+    <button style="color:black;" class="btn btn-success">Üye Bilgi Güncelle</button>
+}

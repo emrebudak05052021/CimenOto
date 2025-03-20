@@ -1,0 +1,190 @@
+﻿
+@{
+    ViewBag.Title = "Ana Sayfa | Oto Yedek Parça | Çimen Oto";
+    <link rel="icon" type="image/png" href="~/Content/images/logo.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="Çimen Oto, Osmaniye'de oto yedek parça satışında liderdir. Kaliteli, uygun fiyatlı oto yedek parçaları ile araçlarınıza değer katın." />
+    <meta name="keywords" content="oto yedek parça, oto yedek parça satışı, Osmaniye oto yedek parça, Çimen Oto, kaliteli oto parçaları" />
+    <meta name="robots" content="index, follow">
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<div class="container-fluid">
+    <div style="margin-bottom:20px;">
+        <h1 style="color:#FFC300;">Tüm oto yedek parçalar tek adreste!</h1>
+        <p style="color:white;">Ödeme Yöntemlerimiz.</p>
+        <div style="justify-content:center;" class="row">
+            <img style="width:60%; border-radius:50px;" src="~/Content/images/odeme/logo_band_white@3x.png" alt="ÇİMEN OTO" />
+        </div>
+    </div>
+
+    <div>
+        <div class="marka-icons-coursel">
+            <div class="carousel-track">
+                @{
+                    cimenOtoV11.Models.db_CimenOtoEntities db = new cimenOtoV11.Models.db_CimenOtoEntities();
+                    var markalar = db.tbl_AracMarka.Where(x => db.tbl_AracParca.Any(p => p.markaID == x.markaID)).OrderBy(x => x.markaID).ToList();
+                }
+                <!-- Volkswagen -->
+                @foreach (var item in markalar)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="/MarkaModelParcalar/Index/@item.markaID">
+                            <div style="width: 35px; height: 35px; overflow: hidden; display: inline-block;">
+                                @{
+                                    var marka = item.markaAdi;
+                                    var uzanti = ".png";
+                                    var tamyol = marka + uzanti;
+                                }
+                                <img src="~/Content/images/icons/@tamyol" alt="ÇİMEN OTO" style="width: 35px; height: 35px; object-fit: contain; " />
+                            </div>
+                        </a>
+                    </li>
+                }
+            </div>
+        </div>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+                <li data-target="#myCarousel" data-slide-to="3"></li>
+                <li data-target="#myCarousel" data-slide-to="4"></li>
+                <li data-target="#myCarousel" data-slide-to="5"></li>
+                <li data-target="#myCarousel" data-slide-to="6"></li>
+                <li data-target="#myCarousel" data-slide-to="7"></li>
+
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img src="~/Content/images/coursel/pors.png" alt="Los Angeles" style="width: 100%; height: 40vw;">
+                </div>
+
+                <div class="item">
+                    <img src="~/Content/images/coursel/mercedes.png" alt="Chicago" style="width: 100%; height: 40vw; ">
+                </div>
+
+                <div class="item">
+                    <img src="~/Content/images/coursel/bmw.png" alt="New york" style="width: 100%; height: 40vw; ">
+                </div>
+                <div class="item">
+                    <img src="~/Content/images/coursel/ww.png" alt="New york" style="width: 100%; height: 40vw; ">
+                </div>
+                <div class="item">
+                    <img src="~/Content/images/coursel/audi.png" alt="New york" style="width: 100%; height: 40vw; ">
+                </div>
+                <div class="item">
+                    <img src="~/Content/images/coursel/skoda.png" alt="New york" style="width: 100%; height: 40vw; ">
+                </div>
+                <div class="item">
+                    <img src="~/Content/images/coursel/seat.png" alt="New york" style="width: 100%; height: 40vw; ">
+                </div>
+                <div class="item">
+                    <img src="~/Content/images/coursel/cupra.png" alt="New york" style="width: 100%; height: 40vw; ">
+                </div>
+            </div>
+
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    <div class="container" style="margin-top:15px;">
+        <div class="row">
+            <div class="col-md-3">
+                <div style="margin:1px !important;border:1px solid #ccc;width:100%;padding:5px;">
+                    <center>
+                        <i class="fa fa-check" style="font-size:25pt; color:white;" aria-hidden="true"></i>
+                        <h4 style="color:white;">Orjinal Ürünler</h4>
+                    </center>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div style="margin:1px !important;border:1px solid #ccc;width:100%;padding:5px;">
+                    <center>
+                        <i class="fa fa-truck" style="font-size: 25pt; color: white;" aria-hidden="true"></i>
+                        <h4 style="color: white;">Ücretsiz Kargo</h4>
+                    </center>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div style="margin:1px !important;border:1px solid #ccc;width:100%;padding:5px;">
+                    <center>
+                        <i class="fa fa-ticket" style="font-size: 25pt; color: white;" aria-hidden="true"></i>
+                        <h4 style="color: white;">Hızlı Teslimat</h4>
+                    </center>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div style="margin:1px !important;border:1px solid #ccc;width:100%;padding:5px;">
+                    <center>
+                        <i class="fa fa-refresh" style="font-size: 25pt; color: white;" aria-hidden="true"></i>
+                        <h4 style="color: white;">Yardım &amp; Destek</h4>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="width:100%; margin-top:50px; height:auto; display:flex; justify-content:center; align-items:center;">
+        <img style="width:50%; height:auto;" src="~/Content/images/turkiye_harita.gif" alt="Alternate Text" />
+        <p style="color: white">Tüm Türkiyenin Hizmetindeyiz !</p>
+
+    </div>
+    <div style="border: 1px solid #AC1527; color: white; margin-top: 50px; width: 100%; height: auto; padding: 20px; text-align: center; justify-content: center;">
+        <div style="margin-bottom:15px;">
+            <h4>Daha da iyisi, gelin, yüz yüze görüşelim!</h4>
+            <p>Müşterilerimize değer veriyoruz. Mesai saatleri içinde bizi dilediğiniz zaman ziyaret edebilirsiniz.</p>
+        </div>
+        <div style="background-color:white; border-radius:20px; padding:15px;">
+            <a style="color:black;" rel="noopener" data-ux-btn="external" data-ux="ButtonExternal" shape="PILL" href="https://wa.me/905444149507" target="_blank" data-aid="CONTACT_INFO_WHATS_APP_REND" data-tccl="ux2.contact.whatsapp.click,click" icon="whatsApp" data-typography="false" class="x-el x-el-a c1-bk c1-c c1-66 c1-bl c1-3 c1-92 c1-8t c1-12 c1-2r c1-2n c1-2o c1-2p c1-2q c1-bm c1-bn c1-bo c1-bp c1-bq c1-br c1-2m c1-8s c1-13 c1-1r c1-2k c1-1m c1-1l c1-u c1-8u c1-8v c1-1w c1-1x c1-8w c1-8x c1-1 c1-2 c1-bs c1-bt c1-bu c1-bv c1-bw c1-bx c1-90 c1-by c1-bz c1-c0 c1-c1"><span data-ux="Element" class="x-el x-el-span c1-c c1-bl c1-u c1-c2 c1-24 c1-2i c1-2j"><span data-ux="Element" class="x-el x-el-span c1-c3 c1-c4 c1-50 c1-c5 c1-8g c1-c6 c1-c7 c1-c8 c1-c9 c1-bl c1-c"><svg viewBox="0 0 24 24" fill="currentColor" width="24px" height="24px" data-ux="Icon" class="x-el x-el-svg c1-3r c1-2d c1-31 c1-bl c1-c"><svg viewBox="0 0 496 497"><defs><linearGradient id="a" x1="247.32" x2="247.32" y1="446.09" y2="39.9" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#20b038"></stop><stop offset="1" stop-color="#60d66a"></stop></linearGradient><linearGradient id="b" x1="247.32" x2="247.32" y1="453.37" y2="32.61" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#f9f9f9"></stop><stop offset="1" stop-color="#fff"></stop></linearGradient></defs><path d="M37.88 453.37l29.59-108A208 208 0 0 1 39.63 241.1c0-115 93.6-208.49 208.56-208.49a208.57 208.57 0 0 1 208.57 208.66c-.05 115-93.62 208.49-208.57 208.49h-.08a208.41 208.41 0 0 1-99.67-25.38zm115.68-66.73l6.34 3.75a173.18 173.18 0 0 0 88.23 24.16h.06c95.55 0 173.31-77.75 173.35-173.3A173.34 173.34 0 0 0 248.26 67.83c-95.62 0-173.38 77.73-173.42 173.28a172.94 172.94 0 0 0 26.5 92.23l4.13 6.55L88 403.84z"></path><path fill="url(#a)" d="M45.13 446.09l28.57-104.3a200.82 200.82 0 0 1-26.88-100.62c0-111 90.36-201.27 201.34-201.27A201.35 201.35 0 0 1 449.5 241.32c0 111-90.37 201.28-201.33 201.28h-.09a201.31 201.31 0 0 1-96.21-24.49z"></path><path fill="url(#b)" d="M37.88 453.37l29.59-108A208 208 0 0 1 39.63 241.1c0-115 93.6-208.49 208.56-208.49a208.57 208.57 0 0 1 208.57 208.66c-.05 115-93.62 208.49-208.57 208.49h-.08a208.41 208.41 0 0 1-99.67-25.38zm115.68-66.73l6.34 3.75a173.18 173.18 0 0 0 88.23 24.16h.06c95.55 0 173.31-77.75 173.35-173.3A173.34 173.34 0 0 0 248.26 67.83c-95.62 0-173.38 77.73-173.42 173.28a172.94 172.94 0 0 0 26.5 92.23l4.13 6.55L88 403.84z"></path><path fill="#fff" d="M196.07 153.94c-3.91-8.68-8-8.85-11.73-9-3-.14-6.51-.13-10-.13a19.15 19.15 0 0 0-13.89 6.52c-4.78 5.22-18.24 17.82-18.24 43.46s18.67 50.42 21.28 53.9 36.05 57.77 89 78.66c44 17.36 53 13.91 62.53 13s30.83-12.61 35.18-24.78 4.34-22.59 3-24.77-4.78-3.48-10-6.08-30.83-15.22-35.61-16.95-8.25-2.61-11.73 2.61-13.45 16.94-16.5 20.42-6.08 3.92-11.29 1.31-22-8.11-41.9-25.86c-15.5-13.82-26-30.87-29-36.09s-.32-8 2.29-10.63c2.34-2.34 5.21-6.09 7.82-9.13s3.47-5.21 5.21-8.69.87-6.52-.44-9.13-11.35-28.34-15.98-38.64z"></path></svg></svg></span><span data-ux="Element" class="x-el x-el-span iconText c1-c c1-bl c1-4l c1-1r c1-ca c1-24 c1-2i c1-2j">Bize WhatsApp Üzerinden Ulaşın</span></span></a>
+        </div>
+        <div style="margin-top:25px;">
+            <p>45013 sokak kuzey yeli caddesi no 15/B Osmaniye/Merkez</p>
+        </div>
+        <div style="margin-top:25px;">
+            <p>Çalışma Saatlerimiz:</p>
+        </div>
+        <div style="display:flex; justify-content:space-around;">
+            <div>
+                <p>Pazartesi 08:30 - 18:00</p>
+                <p>Salı 08:30 - 18:00</p>
+            </div>
+            <div>
+                <p>Çarşamba 08:30 - 18:00</p>
+                <p>Perşembe 08:30 - 18:00</p>
+            </div>
+            <div>
+                <p>Cuma 08:30 - 18:00</p>
+                <p>Cumartesi 08:30 - 18:00</p>
+            </div>
+            <div>
+                <p>Pazar -KAPALI-</p>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:50px; text-align:center; display:flex; justify-content:center;">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6369.290250549687!2d36.22217559410591!3d37.042106938716465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x152f22291e94d729%3A0xa7edb9b338d37658!2zRmFrxLF1xZ9hxJ_EsSwgODAwMTAgT3NtYW5peWUgTWVya2V6L09zbWFuaXll!5e0!3m2!1str!2str!4v1736963733687!5m2!1str!2str"
+                width="100%"
+                height="320"
+                frameborder="0"
+                style="border:0;"
+                allowfullscreen
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+        <p style="color: white">Çimen Oto Yedek Parça'nın Osmaniye'deki konumunu harita üzerinde görüntüleyebilirsiniz. Bizi ziyaret edin!</p>
+    </div>
+</div>
+

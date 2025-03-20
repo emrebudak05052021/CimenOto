@@ -1,0 +1,132 @@
+﻿@using cimenOtoV11.Models
+@model List<tbl_Siparisler>
+@{
+    ViewBag.Title = "Admin Panel | Oto Yedek Parça | Çimen Oto";
+    <link rel="icon" type="image/png" href="/Content/images/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    #islemler_container div {
+        margin-top: 20px;
+        width: 50%;
+        border: 2px solid white;
+    }
+    .container-fluid {
+        width: 100%;
+        display: flex;
+    }
+    .card {
+        margin:10px;
+        width: 100%;
+        border: 2px solid white;
+    }
+    h2 , h5{
+        font-weight:700;
+    }
+</style>
+
+@{ 
+    db_CimenOtoEntities db = new db_CimenOtoEntities();
+    var spSayi = db.tbl_Siparisler.Count();
+    var topTur = db.tbl_Siparisler.Sum(x=>x.toplamTutar);
+    var spHazirlaniyor = db.tbl_Siparisler.Count(x=>x.sipDurum == 1);
+    var spKargoda = db.tbl_Siparisler.Count(x => x.sipDurum == 3);
+    var spTeslim = db.tbl_Siparisler.Count(x => x.sipDurum == 4);
+    var spOdemeYapilmadi = db.tbl_Siparisler.Count(x => x.sipDurum == 7);
+    var spIptal = db.tbl_Siparisler.Count(x => x.sipDurum == 5);
+    var enCokSatanUrunID = db.tbl_SİparisDetay
+                             .GroupBy(x => x.parcaID)
+                             .OrderByDescending(g => g.Sum(x => x.miktar))
+                             .Select(g => g.Key)
+                             .FirstOrDefault();
+    var enCokSatanUrun = db.tbl_AracParca.FirstOrDefault(x => x.parcaID == enCokSatanUrunID);
+}
+
+<h2 style="color:white;">ADMİN PANELİ</h2>
+<div class="container-fluid">
+    <div class="card">
+        <h4>Toplam Alınan Sipariş</h4>
+        <h2>@spSayi</h2>
+    </div>
+    <div class="card">
+        <h4>Toplam Sipariş Tutarı</h4>
+        <h2>@topTur TL</h2>
+    </div>
+    <div class="card">
+        <h4>Sipariş Hazırlanıyor</h4>
+        <h2>@spHazirlaniyor</h2>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="card">
+        <h4>Sipariş Kargoda</h4>
+        <h2>@spKargoda</h2>
+    </div>
+    <div class="card">
+        <h4>Sipariş Teslim Edildi</h4>
+        <h2>@spTeslim</h2>
+    </div>
+    <div class="card">
+        <h4>Ödeme Yapılmadı</h4>
+        <h2>@spOdemeYapilmadi</h2>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="card">
+        <h4>Sipariş İptal</h4>
+        <h2>@spIptal</h2>
+    </div>
+    <div class="card">
+        <h4>En Çok Satan Parça</h4>
+        <h5>@enCokSatanUrun.tbl_AracMarka.markaAdi | @enCokSatanUrun.modelID | @enCokSatanUrun.pAd | @enCokSatanUrun.kdvMaliyet TL | @enCokSatanUrun.orginalKod</h5>
+    </div>
+</div>
+<div id="islemler_container">
+    <div>
+        <a style="color:black;" href="/adminMarka/Index" class="btn btn-success"><i class="fa-solid fa-gear fa-spin"></i>Marka İşlemleri</a>
+    </div>
+    <div>
+        <a style="color:black;" href="/adminParca/Index" class="btn btn-warning"><i class="fa-solid fa-gear fa-spin"></i>Parça İşlemleri</a>
+    </div>
+    <div>
+        <a style="color:black; background-color:hotpink;" href="/SiparisDurum/sdIndex" class="btn btn-primary"><i class="fa-solid fa-gear fa-spin"></i>Sipariş Durum İşlemleri</a>
+    </div>
+    <div>
+        <a style="color:black;" href="/Admin/uyeIslemleri" class="btn btn-danger"><i class="fa-solid fa-gear fa-spin"></i>Üye İşlemleri</a>
+    </div>
+</div>
+<div style="width:100%; overflow:scroll" class="container-fluid">
+    <table class="table table-bordered">
+        <thead>
+            <tr style="color:black;" class="table-light">
+                <th>Sip No</th>
+                <th>Sip Tarih</th>
+                <th>Tutar</th>
+                <th>Sip Durum</th>
+                <th>Adres</th>
+                <th>Sözlesme</th>
+                <th>Detay</th>
+                <th>Durum</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+              
+                <tr style="margin-top:5px; color:white;">
+                    <td style="color:#ffc300;">@item.siparisID</td>
+                    <td>@item.siparisTarihi</td>
+                    <td>@item.toplamTutar TL</td>
+                    <td>@item.tbl_SiparisDurum.durum</td>
+                    <td>@item.adres</td>
+                    <td>@item.sozlesmeKabul</td>
+                    <td><a class="btn btn-primary" href="/Admin/siparisDetay/@item.siparisID">Detay</a></td>
+                    <td><a class="btn btn-success" href="/Admin/siparisDurum/@item.siparisID">Durum</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

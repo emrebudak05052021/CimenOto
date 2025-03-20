@@ -1,0 +1,37 @@
+﻿@using cimenOtoV11.Models
+@model List<tbl_Siparisler>
+@{
+    ViewBag.Title = "Siparişlerim | Oto Yedek Parça | Çimen Oto";
+    <link rel="icon" type="image/png" href="~/Content/images/logo.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr class="table-light">
+            <th>Tarih</th>
+            <th>Toplam Tutar</th>
+            <th>Durum</th>
+            <th>Adres</th>
+            <th>Detay</th>
+        </tr>
+    </thead>
+    <tbody style="color:white;">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.siparisTarihi</td>
+                <td style="color:lightgreen;">@item.toplamTutar</td>
+                <td>@item.tbl_SiparisDurum.durum</td>
+                @{
+                    db_CimenOtoEntities db = new db_CimenOtoEntities();
+                    var adres = db.tbl_Adres.FirstOrDefault(x => x.userID == item.kulID);
+                }
+                <td>@adres.il  @adres.ilce</td>
+                <td><a class="btn btn-primary" href="/Siparis/siparislerimDetay/@item.siparisID">Detay</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

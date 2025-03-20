@@ -1,0 +1,13 @@
+﻿@model Iyzipay.Model.Payment
+@{
+    ViewBag.Title = "Ödeme Başarısız | Oto Yedek Parça | Çimen Oto";
+    <link rel="icon" type="image/png" href="~/Content/images/logo.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Ödeme Başarısız!</h2>
+<p>Ödeme sırasında bir hata oluştu.</p>
+<p><strong>Hata:</strong> @ViewBag.HataMesaji</p>
+

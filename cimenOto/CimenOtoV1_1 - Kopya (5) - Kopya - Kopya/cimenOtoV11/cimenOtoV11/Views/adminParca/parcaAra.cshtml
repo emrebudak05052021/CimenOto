@@ -1,0 +1,143 @@
+﻿@using cimenOtoV11.Models
+@model List<cimenOtoV11.Models.tbl_AracParca>
+@{
+    ViewBag.Title = "Parçalarda Ara | Oto Yedek Parça | Çimen Oto";
+    <link rel="icon" type="image/png" href="/Content/images/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--PARÇA ARA-->
+<h1 style="color:white;">Yedek Parçalarımızda Arayın.</h1>
+@if (ViewBag.HataMesajlari != null)
+{
+    <div class="alert alert-danger">
+        <ul>
+            @foreach (var hata in ViewBag.HataMesajlari)
+            {
+                <li>@hata</li>
+            }
+        </ul>
+    </div>
+}
+<form method="post" action="/adminParca/parcaAra">
+
+    <div overflow-x: auto; -webkit-overflow-scrolling: touch;" class="table-responsive">
+
+        <h4 style="color:red;">Lütfen Arama Türü Seçiniz.</h4>
+        <select style="color:black;" name="islem">
+            <option value="üretici_orginal">Üretici Kod ve Orjinal Kod</option>
+            <option value="model_parca">Model adı ve Parça İsmi</option>
+            <option style="color:darkred;" value="orginalNo">Sadece Orjinal No(ÖNERİLEN)</option>
+            <option value="ureticiKod">Sadece Üretici No</option>
+            <option value="markaID">Sadece Marka ID</option>
+
+        </select>
+        <button class="btn btn-primary" type="submit">PARÇA ARA</button>
+
+        <table class="table">
+            <thead style="color:white;">
+                <tr>
+                    <th>Araç Modeli (örn: A4)</th>
+                    <th>Parça İsmi</th>
+                    <th>Orjinal No</th>
+                    <th>Üretici Kodu</th>
+                    <th>Marka ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <input style="color:black; width:100%;" type="text" name="aracModel" placeholder="Araç Model" />
+                    </td>
+                    <td>
+                        <input style="color: black; width: 100%;" type="text" name="parcaAdi" placeholder="Parça Adı" />
+                    </td>
+                    <td>
+                        <input style="color: black; width: 100%;" type="text" name="orginalNo" placeholder="Orjinal No" />
+                    </td>
+                    <td>
+                        <input style="color: black; width: 100%;" type="text" name="ureticiKod" placeholder="Üretici Kod" />
+                    </td>
+                    <td>
+                        <input style="color: black; width: 100%;" type="text" name="markaID" placeholder="Marka ID" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</form>
+@if (Model != null)
+{
+
+    <!--PARÇA LİSTELE-->
+    <a style="margin:10px; color:black;" href="/adminParca/parcaEkle" class="btn btn-success">PARÇA EKLE</a>
+    <!--PARÇA LİSTESİ-->
+    <div>
+        <div class="row">
+            <table style="color:white; width:100%;">
+                <thead>
+                    <tr style="background-color:white; color:black;">
+                        <th>Parça İD</th>
+                        <th>Marka Adı</th>
+                        <th>Parça Adı</th>
+                        <th>Model</th>
+                        <th>Üretici</th>
+                        <th>Orjinal Kod</th>
+                        <th>Liste Fiyatı</th>
+                        <th>Satış Fiyatı</th>
+                        <th>Stok Durumu</th>
+                        <th>SİL</th>
+                        <th>GÜNCELLE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td style="color:#ffc300;">@item.parcaID</td>
+                            <td>@item.tbl_AracMarka.markaAdi</td>
+                            <td>@item.pAd</td>
+                            <td>@item.modelID</td>
+                            <td>@item.Uretici</td>
+                            <td>@item.orginalKod</td>
+                            <td>@item.listeFiyat</td>
+                            <td>@item.kdvMaliyet</td>
+                            <td>@item.stokMiktari</td>
+                            <td><a href="/adminParca/sil/@item.parcaID" class="btn btn-danger">Sil</a></td>
+                            <td><a href="/adminParca/parcaGetir/@item.parcaID" class="btn btn-primary">Güncelle</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Sayfalama -->
+        <div class="row">
+            <div class="col-12 text-center">
+                <nav>
+                    <ul style="justify-content:space-around" class="pagination">
+                        @if (ViewBag.CurrentPage > 1)
+                        {
+                            <li class="page-item">
+                                <a style="color:red;" class="page-link" href="@Url.Action("Index", new { page = ViewBag.CurrentPage - 1 })" aria-label="Previous">
+                                    <span aria-hidden="true">GERİ</span>
+                                </a>
+                            </li>
+                        }
+                        @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+                        {
+                            <li class="page-item">
+                                <a style="color:green;" class="page-link" href="@Url.Action("Index", new { page = ViewBag.CurrentPage + 1 })" aria-label="Next">
+                                    <span aria-hidden="true">İLERİ</span>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+}

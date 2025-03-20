@@ -1,0 +1,56 @@
+﻿@using cimenOtoV11.Models
+@model List<tbl_Sepet>
+@{
+    ViewBag.Title = "Sepetim | Oto Yedek Parça | Çimen Oto";
+    <link rel="icon" type="image/png" href="~/Content/images/logo.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    decimal? genelToplam = 0;
+}
+<div>
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th>Ürün Görseli</th>
+                <th>Parça Adı</th>
+                <th>İstenen Miktar</th>
+                <th>Eklenme Tarihi</th>
+                <th>Adet Fiyatı</th>
+                <th>Toplam Tutar</th>
+                <th>Ürün Kaldır</th>
+            </tr>
+
+        </thead>
+        @foreach (var item2 in Model)
+        {
+            var satirToplam = item2.tbl_AracParca.kdvMaliyet * item2.miktar;
+            genelToplam += satirToplam;
+        }
+        <div style="color:white;">
+            Güncel Toplam Tutarınız <span style="color:lawngreen"> <h4 style="padding:15px;">@genelToplam <i class="fa-solid fa-turkish-lira-sign" style="color: #04ff00;"></i></h4></span>
+        </div>
+        @foreach (var item in Model)
+        {
+            var satirToplam = item.tbl_AracParca.kdvMaliyet * item.miktar;
+            <tr>
+                <td><img style="width:10vw;" src="@item.tbl_AracParca.parcaImage" /></td>
+                <td>@item.tbl_AracParca.pAd</td>
+                <td>@item.miktar</td>
+                <td>@item.eklenmeTarihi</td>
+                <td>@item.tbl_AracParca.kdvMaliyet</td>
+                <td style="color:#FFC300;">@satirToplam</td>
+                <td><a style="color:white;" href="/Sepet/sepetUrunSil/@item.sepetID" class="btn btn-danger">Ürünü Sil</a></td>
+            </tr>
+        }
+        <tbody>
+        </tbody>
+    </table>
+    <div class="text-center">
+        <a class="btn btn-primary" href="/Home/kartListele"><i class="fa-solid fa-backward-step" style="color: #f4d50b;"></i>Alışverişe Devam Et</a>
+        <a style="color:black;" class="btn btn-success" href="/Siparis/siparisFormu">Satın Al</a>
+    </div>
+</div>

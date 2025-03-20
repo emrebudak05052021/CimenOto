@@ -1,0 +1,85 @@
+﻿@using cimenOtoV11.Models
+@model List<tbl_AracParca>
+@{
+    ViewBag.Title = "Parçalar | Oto Yedek Parça | Çimen Oto";
+    <link rel="icon" type="image/png" href="/Content/images/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="color:white;">ARAÇ PARÇA İŞLEMLERİ</h2>
+@{
+    db_CimenOtoEntities db = new db_CimenOtoEntities();
+    var top = db.tbl_AracParca.Count();
+    <h3 style="color:#ffc300;">Toplam <strong>@top</strong> kayıt bulundu.</h3>
+}
+<a style="margin:10px; color:black;" href="/adminParca/parcaEkle" class="btn btn-success">PARÇA EKLE</a>
+<a style="margin:10px; color:black;" href="/adminParca/parcaAra" class="btn btn-primary">PARÇA ARA</a>
+
+<!--PARÇA LİSTESİ-->
+<div>
+    <div class="container-fluid" style="overflow:scroll;">
+        <table style="color:white; width:100%;">
+            <thead>
+                <tr style="background-color:white; color:black;">
+                    <th>Parça İD</th>
+                    <th>Marka Adı</th>
+                    <th>Model</th>
+                    <th>Parça Adı</th>
+                    <th>Üretici</th>
+                    <th>Orjinal Kod</th>
+                    <th>Liste Fiyatı</th>
+                    <th>Satış Fiyatı</th>
+                    <th>Stok Durumu</th>
+                    <th>SİL</th>
+                    <th>GÜNCELLE</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td style="color:#ffc300;">@item.parcaID</td>
+                        <td>@item.tbl_AracMarka.markaAdi</td>
+                        <td>@item.modelID</td>
+                        <td>@item.pAd</td>
+                        <td>@item.Uretici</td>
+                        <td>@item.orginalKod</td>
+                        <td>@item.listeFiyat</td>
+                        <td>@item.kdvMaliyet</td>
+                        <td>@item.stokMiktari</td>
+                        <td><a href="/adminParca/sil/@item.parcaID" class="btn btn-danger">Sil</a></td>
+                        <td><a href="/adminParca/parcaGetir/@item.parcaID" class="btn btn-primary">Güncelle</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Sayfalama -->
+    <div class="row">
+        <div class="col-12 text-center">
+            <nav>
+                <ul style="justify-content:space-around" class="pagination">
+                    @if (ViewBag.CurrentPage > 1)
+                    {
+                        <li class="page-item">
+                            <a style="color:red;" class="page-link" href="@Url.Action("Index", new { page = ViewBag.CurrentPage - 1 })" aria-label="Previous">
+                                <span aria-hidden="true">GERİ</span>
+                            </a>
+                        </li>
+                    }
+                    @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+                    {
+                        <li class="page-item">
+                            <a style="color:green;" class="page-link" href="@Url.Action("Index", new { page = ViewBag.CurrentPage + 1 })" aria-label="Next">
+                                <span aria-hidden="true">İLERİ</span>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

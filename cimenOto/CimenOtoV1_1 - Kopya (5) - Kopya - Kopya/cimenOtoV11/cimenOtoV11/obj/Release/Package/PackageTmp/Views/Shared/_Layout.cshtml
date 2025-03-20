@@ -1,0 +1,342 @@
+﻿@{
+    bool isLoggedIn = HttpContext.Current.User.Identity.IsAuthenticated;
+}
+@using cimenOtoV11.Models;
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="publisher" content="https://www.guarddevelop.com.tr">
+
+    <!-- SEO Meta Etiketleri -->
+    <meta name="description" content="Çimen Oto, Osmaniye’de kaliteli oto yedek parçaları ve aksesuarları uygun fiyatlarla sunar. Aracınız için en güvenilir parça seçeneklerini keşfedin!">
+    <meta name="author" content="Çimen Oto">
+    <meta name="robots" content="index, follow">
+
+    <!-- Sosyal Medya Etiketleri (Twitter Card) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Çimen Oto - Oto Yedek Parça">
+    <meta name="twitter:description" content="Osmaniye'de oto yedek parça satışı yapan Çimen Oto, kaliteli ve uygun fiyatlı ürünler sunar.">
+    <meta name="twitter:image" content="https://guarddevelop.com.tr/Content/images/logo.png">
+
+    <title>@(ViewBag.Title ?? "Oto Yedek Parça | Çimen Oto")</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="~/Content/images/logo.png">
+
+    <!-- CSS Dosyaları (Sayfanın üstünde, hızlı yüklenmeli) -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap" media="print" onload="this.onload=null;this.removeAttribute('media');">
+    <link rel="stylesheet" href="~/Content/admincss/css/sb-admin-2.min.css">
+    <link rel="stylesheet" href="~/Content/CSS/_LayoutCss/style.css">
+
+    <!-- JavaScript Dosyaları (Sayfa sonuna alındı, böylece yüklenme hızlanır) -->
+    <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script defer src="~/Content/admincss/vendor/jquery/jquery.min.js"></script>
+    <script defer src="~/Content/admincss/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script defer src="~/Content/admincss/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script defer src="~/Content/admincss/js/sb-admin-2.min.js"></script>
+
+    <style>
+        /* Scroll çubuğunun genel genişliği */
+        ::-webkit-scrollbar {
+            width: 4px; /* Dikey scrollbar genişliği */
+            height: 5px; /* Yatay scrollbar yüksekliği */
+        }
+
+        /* Scroll çubuğunun kaydırılan kısmı */
+        ::-webkit-scrollbar-thumb {
+            background: #AC1527; /* Scroll barın rengi */
+            border-radius: 10px; /* Köşeleri yuvarlama */
+        }
+
+        /* Scroll çubuğunun arka planı */
+        ::-webkit-scrollbar-track {
+            background: #ddd; /* Arka plan rengi */
+        }
+
+        .header {
+            width: 100%;
+            background-color: #1c1c1c;
+        }
+
+        .header1 {
+            width: 100%;
+            background-color: #1c1c1c;
+            padding: 10px 0;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            border: 2.5px solid lime;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 10px 4px 1000px rgba(0, 0, 0, 50);
+            max-width: 90%;
+            margin: 0 auto;
+        }
+
+        .header1-logo img {
+            height: 100px;
+            width: 100%;
+        }
+
+        .header1-logo {
+            width: 20%;
+        }
+
+        .brand-name {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 28px;
+            font-weight: bold;
+            color: black;
+        }
+
+            .brand-name h1 {
+                margin: 0;
+                font-size: 28px;
+            }
+
+        .header-slogan {
+            text-align: center;
+            margin-top: 10px;
+            color: white;
+            font-weight: 900;
+            font-size: 16px;
+        }
+    </style>
+    <!--<!--<!--SAĞ TIK ENGELİ-->
+    <script>
+        document.addEventListener("contextmenu", function (event) {
+            event.preventDefault(); // Sağ tıklamayı engelle
+        });
+
+        document.addEventListener("keydown", function (event) {
+            if (event.ctrlKey && (event.key === "U" || event.key === "u")) {
+                event.preventDefault(); // CTRL + U engelle (Sayfa kaynağını görüntüleme)
+            }
+            if (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "i")) {
+                event.preventDefault(); // CTRL + SHIFT + I engelle (Geliştirici araçları)
+            }
+            if (event.ctrlKey && event.shiftKey && (event.key === "J" || event.key === "j")) {
+                event.preventDefault(); // CTRL + SHIFT + J engelle (Konsol)
+            }
+            if (event.ctrlKey && event.key === "S") {
+                event.preventDefault(); // CTRL + S engelle (Sayfayı kaydetme)
+            }
+        });
+    </script>
+    <script>
+        (function () {
+            var devtools = false;
+            var threshold = 200;
+
+            setInterval(function () {
+                var start = performance.now();
+                debugger;
+                var end = performance.now();
+                if (end - start > threshold) {
+                    devtools = true;
+                    window.location.href = "https://www.google.com"; // Kullanıcıyı başka siteye yönlendir
+                }
+            }, 100);
+
+            document.addEventListener("keydown", function (event) {
+                if (event.key === "F12" || (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "i" || event.key === "J" || event.key === "j"))) {
+                    event.preventDefault();
+                    alert("Geliştirici konsolu devre dışı!");
+                }
+            });
+        })();
+    </script>
+</head>
+<body style="display: block;">
+    <!--BANNER-->
+    <div class="banner" style="width:100%; background-color:#1c1c1c;">
+        <div style="display:flex; justify-content:space-around; align-items:center; text-align:center;">
+            <h1 style=" font-size:3vh; color:white; font-weight:700;"><img style="width:100px; height:auto; border-radius:30%;" src="~/Content/images/logo.png" alt="ÇİMEN OTO" />ÇİMEN OTO YEDEK PARÇA</h1>
+        </div>
+        <div style="text-align:center; width:100%; color:white; font-weight:700; border:1px solid white; display:flex; justify-content:center; align-items:center;">
+            @{
+                Guid? user2 = Session["UserID"] as Guid?;
+                db_CimenOtoEntities vt = new db_CimenOtoEntities();
+                var kullanici2 = vt.tbl_User.FirstOrDefault(x => x.kulID == user2);
+                if (kullanici2 == null)
+                {
+                    <p>HOŞGELDİNİZ</p>
+                }
+                else
+                {
+                    <h4>TEKRAR HOŞGELDİN </h4><h4 style="color: #F92438; margin-left:8px;">@kullanici2.ad @kullanici2.soyad</h4>
+                }
+            }
+        </div>
+        <div style="width:100%;">
+            <img style="width:100%; max-height:500px;" src="/Content/images/banner.jpg" alt="ÇİMEN OTO" loading="lazy">
+        </div>
+
+    </div>
+    <!--ÜST NAVBAR-->
+    <div class="ustNavbar">
+        <ul id="main">
+            <li><a href="/Home/anaSayfa">Ana Sayfa</a></li>
+            <li><a href="/Home/kartListele/kartListele">Tüm Parçalar</a></li>
+            <li>
+                <a href="#">Hakkımızda <i class="fa-solid fa-angles-down"></i></a>
+                <ul>
+                    <li><a href="tel:+905444149507"><i class="fa-solid fa-handshake-angle"></i>Yardım-Destek</a></li>
+                    <li><a href="/Home/Hakkimizda"><i class="fa-solid fa-question"></i>Hakkımızda</a></li>
+                    <li><a href="/Home/bizeUlasin"><i class="fa-solid fa-phone-volume"></i>Bize Ulaşın</a></li>
+                    <li><a href="/Home/Magazamiz"><i class="fa-solid fa-shop"></i>Mağazamız</a></li>
+                    <li><a href="/Home/misyonVizyon"><i class="fa-solid fa-chess-king"></i>Misyon - Vizyon</a></li>
+                </ul>
+            </li>
+            <li>
+
+                @{
+                    Guid? user = Session["UserID"] as Guid?;
+                    db_CimenOtoEntities db = new db_CimenOtoEntities();
+                    var sepetSayi = db.tbl_Sepet.Where(x => x.kulID == user).Count();
+                    var kullanici = db.tbl_User.FirstOrDefault(x => x.kulID == user);
+                    if (isLoggedIn)
+                    {
+                        sepetSayi = db.tbl_Sepet.Where(x => x.kulID == user).Count();
+                    }
+                    else
+                    {
+                        sepetSayi = 0;
+                    }
+
+                }
+                <a href="#"><i class="fa-solid fa-circle-user fa-xl" style="color: #ffffff;"></i><i class="fa-solid fa-angles-down"></i></a>
+                <ul>
+
+                    <li><a href="/Sepet/Sepetim"><i class="fas fa-shopping-cart" style="color: lime;"></i>Sepetim(@sepetSayi)</a></li>
+                    @if (kullanici == null)
+                    {
+                        <li><a href="/Guvenlik/GirisYap"><i class="fa-solid fa-user-plus" style="color: #ffffff;"></i>GİRİŞ YAP</a></li>
+                        <li><a href="/Guvenlik/kayitOl"><i class="fa-solid fa-right-to-bracket"></i>KAYIT OL</a></li>
+                    }
+                    @if (kullanici != null)
+                    {
+                        <li>
+                            <a href="/Siparis/siparislerim/@user"><i class="fa-solid fa-truck-ramp-box" style="color: #ffc100; "></i>Siparişlerim</a>
+                        </li>
+                        <li>
+                            <a href="/User/adreslerim/@user"><i class="fa-solid fa-map-location-dot" style="color: #ffc100;"></i>Adreslerim</a>
+                        </li>
+                        <li>
+                            <a href="/User/hesapGetir/@user"><i class="fa-solid fa-gear fa-spin" style="color: #ffc100;"></i>Hesabım</a>
+                        </li>
+                        <li>
+                            <a href="/Guvenlik/cikisYap"><i class="fa-solid fa-right-from-bracket" style="color: #ffc100;"></i>Çıkış Yap</a>
+                        </li>
+                    }
+                </ul>
+
+            </li>
+            <li><a href="tel:+905444149507"><i style="color:lime;" class="fa-solid fa-headset fa-fade fa-xl"></i></a></li>
+
+        </ul>
+    </div>
+
+
+    <div>
+        <!--MARKALAR-->
+        <div id="content" style="display:flex; justify-content:center;">
+            <div class="Navbar collapse" style="display: flex; height:auto;">
+                <ul id="accordionSidebar">
+
+                    @{
+                        var markalar = db.tbl_AracMarka.Where(x => db.tbl_AracParca.Any(p => p.markaID == x.markaID)).OrderBy(x => x.markaID).ToList();
+                    }
+                    <!-- Volkswagen -->
+                    @foreach (var item in markalar)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link collapsed" href="/MarkaModelParcalar/Index/@item.markaID">
+                                <div>
+                                    @{
+                                        var marka = item.markaAdi;
+                                        var uzanti = ".png";
+                                        var tamyol = marka + "" + uzanti;
+                                    }
+                                    <img style="width:50px; height:50px;" src="~/Content/images/icons/@tamyol" alt="ÇİMEN OTO" />
+                                </div>
+                                <div>
+                                    <span>@item.markaAdi</span>
+                                </div>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <!--RENDER BODY-->
+        <header style="display: flex; flex-direction: column; align-items: center; text-align: center; background-color: #1C1C1C; margin: 0; padding: 0;" class="col-md-12">
+            <div>
+                <h1 style="color:white;">Uygun Fiyatlı Oto Yedek Parça Satışı | ÇİMEN OTO</h1>
+            </div>
+            @RenderBody()
+            <p style="color: white; font-size: 18px; max-width: 80%;">
+                Aracınız için en kaliteli yedek parçaları uygun fiyatlarla satın alın. Motor, fren, süspansiyon ve diğer oto yedek parçaları burada!
+            </p>
+            <h1 style="color:#ffc300">Osmaniye Oto Yedek Parça</h1>
+        </header>
+
+        <!--FOOTER-->
+        <div id="footer">
+            <div class="footer-kolon">
+                <div style="text-align:center; color:white;">
+                    <div style="justify-content:space-around; display:inline-flex;">
+                        <div>
+                            <ul>
+                                <li><a style="color:lime" href="tel:+905444149507">Yardım-Destek</a></li>
+                                <li><a href="/Home/Hakkimizda">Hakkımızda</a></li>
+                                <li><a href="/Home/bizeUlasin">Bize Ulaşın</a></li>
+                                <li><a href="/Home/Magazamiz">Mağazamız</a></li>
+                                <li><a href="/Home/misyonVizyon">Misyon - Vizyon</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul style="align-items:center;  display:flex; flex-direction:column;">
+                                <li><a href="/Politika/gizlilikPolitikasi">Gizlilik Politikası</a></li>
+                                <li><a href="/Politika/mesafeliSatisSozlesmesi">Mesafeli Satış Sözleşmesi</a></li>
+                                <li><a href="/Politika/teslimaVeIade">Teslimat ve İade</a></li>
+                                <li><a href="/Politika/urunlerHakkinda">Ürünler Hakkında</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="footer-icons">
+                        <ul>
+                            @*<li><a rel="nofollow" href="https://www.facebook.com/?locale=tr_TR"><i class="fa-brands fa-facebook fa-2x"></i></a></li>*@
+                            <li><a rel="nofollow" href="https://www.instagram.com/"><i class="fa-brands fa-instagram fa-2x"></i></a></li>
+                            <li><a rel="nofollow" href="https://tr.linkedin.com/"><i class="fa-brands fa-linkedin fa-2x"></i></a></li>
+                            @*<li><a rel="nofollow" href="https://www.google.com/search?q=twitter"><i class="fa-brands fa-x-twitter fa-2x"></i></a></li>*@
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <img style="width:30rem" src="~/Content/images/odeme/logo_band_colored@1X.png" alt="Cimen Oto" />
+                </div>
+            </div>
+            <div style="color:white;">
+                <p>Powered by <a href="https://www.linkedin.com/in/emre-budak-24bb82247/" style="color:lightgreen">Emre BUDAK</a></p>
+                <p>Telif Hakkı © 2025 ÇİMEN OTO YEDEK PARÇA</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

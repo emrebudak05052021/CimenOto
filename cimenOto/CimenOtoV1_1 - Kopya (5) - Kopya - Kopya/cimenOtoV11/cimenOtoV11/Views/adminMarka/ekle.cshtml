@@ -1,0 +1,26 @@
+﻿@using cimenOtoV11.Models
+@{
+    ViewBag.Title = "Marka Ekle | Oto Yedek Parça | Çimen Oto";
+    <link rel="icon" type="image/png" href="/Content/images/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post">
+    <table class="table-bordered" style="color:white; width:100%;">
+        <thead>
+            <tr style="background-color:white; color:black;">
+                <th>Marka ADI</th>
+                <th>İşlem</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input style="color:black;" name="vmarkaadi" type="text" placeholder="Marka adı giriniz" required /></td>
+                <td><button class="btn btn-success">EKLE</button></td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+

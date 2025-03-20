@@ -1,0 +1,47 @@
+﻿@using cimenOtoV11.Models
+@model List<tbl_User>
+@{
+    ViewBag.Title = "Üye İşlemleri | Oto Yedek Parça | Çimen Oto";
+    <link rel="icon" type="image/png" href="/Content/images/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2 style="color:white;">SİPARİŞ DURUM İŞLEMLERİ</h2>
+@{
+    db_CimenOtoEntities db = new db_CimenOtoEntities();
+    var top = db.tbl_User.Count();
+    <h3 style="color:#ffc300;">Toplam <strong>@top</strong> kayıt bulundu.</h3>
+}
+<form method="post">
+    <div>
+        <button style="margin:10px; color:black;" href="/Admin/uyeAra" class="btn btn-success">ÜYE ARA</button>
+        <input type="tel" name="tel" min="11" max="11" style="color:black" required placeholder="05xxxxxxxxx" />
+        <a class="btn btn-warning" style="color:black;" href="/Admin/uyeIslemleri">Tümünü Listele</a>
+    </div>
+</form>
+<table class="table-bordered" style="color:white; width:100%;">
+    <thead>
+        <tr style="background-color:white; color:black;">
+            <th>Üye No</th>
+            <th>Kullanıcı Adı</th>
+            <th>Şifre</th>
+            <th>Tel</th>
+            <th>GÜNCELLE</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="color:#ffc300;">@item.kulID</td>
+                <td>@item.userName</td>
+                <td>@item.password</td>
+                <td>@item.telNo</td>
+                <td><a href="/Admin/uyeGetir/@item.kulID" class="btn btn-primary">GÜNCELLE</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

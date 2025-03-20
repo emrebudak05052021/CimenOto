@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="91e7706e90724ef39c000688af52507e" Name="Diagram1" ZoomLevel="81">
+        <EntityTypeShape EntityType="db_CimenOtoModel.MesafeliSatisSozlesmeleri" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_CimenOtoModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_CimenOtoModel.tbl_Adres" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_CimenOtoModel.tbl_AracMarka" Width="1.5" PointX="1.5" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_CimenOtoModel.tbl_AracModel" Width="1.5" PointX="3.75" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_CimenOtoModel.tbl_AracParca" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_CimenOtoModel.tbl_Sepet" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_CimenOtoModel.tbl_SİparisDetay" Width="1.5" PointX="5.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_CimenOtoModel.tbl_SiparisDurum" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_CimenOtoModel.tbl_Siparisler" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_CimenOtoModel.tbl_TeslimatIade" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_CimenOtoModel.tbl_User" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_CimenOtoModel.tbl_Yorum" Width="1.5" PointX="8" PointY="9" IsExpanded="true" />
+        <AssociationConnector Association="db_CimenOtoModel.FK_MesafeliSatisSozlesmeleri_tbl_Siparisler" ManuallyRouted="false" />
+        <AssociationConnector Association="db_CimenOtoModel.FK_MesafeliSatisSozlesmeleri_tbl_User" ManuallyRouted="false" />
+        <AssociationConnector Association="db_CimenOtoModel.FK_tbl_Adres_tbl_User" ManuallyRouted="false" />
+        <AssociationConnector Association="db_CimenOtoModel.FK_tbl_SİparisDetay_tbl_Adres" ManuallyRouted="false" />
+        <AssociationConnector Association="db_CimenOtoModel.FK_tbl_Siparisler_tbl_Adres" ManuallyRouted="false" />
+        <AssociationConnector Association="db_CimenOtoModel.FK_tbl_AracModel_tbl_AracMarka" ManuallyRouted="false" />
+        <AssociationConnector Association="db_CimenOtoModel.FK_tbl_AracParca_tbl_AracMarka" ManuallyRouted="false" />
+        <AssociationConnector Association="db_CimenOtoModel.FK_tbl_Sepet_tbl_AracParca" ManuallyRouted="false" />
+        <AssociationConnector Association="db_CimenOtoModel.FK_tbl_SİparisDetay_tbl_AracParca1" ManuallyRouted="false" />
+        <AssociationConnector Association="db_CimenOtoModel.FK_tbl_Yorum_tbl_AracParca" ManuallyRouted="false" />
+        <AssociationConnector Association="db_CimenOtoModel.FK_tbl_Sepet_tbl_User" ManuallyRouted="false" />
+        <AssociationConnector Association="db_CimenOtoModel.FK_tbl_SİparisDetay_tbl_Siparisler1" ManuallyRouted="false" />
+        <AssociationConnector Association="db_CimenOtoModel.FK_tbl_Siparisler_tbl_SiparisDurum" ManuallyRouted="false" />
+        <AssociationConnector Association="db_CimenOtoModel.FK_tbl_Siparisler_tbl_User" ManuallyRouted="false" />
+        <AssociationConnector Association="db_CimenOtoModel.FK_tbl_Siparisler_tbl_User1" ManuallyRouted="false" />
+        <AssociationConnector Association="db_CimenOtoModel.FK_tbl_Yorum_tbl_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

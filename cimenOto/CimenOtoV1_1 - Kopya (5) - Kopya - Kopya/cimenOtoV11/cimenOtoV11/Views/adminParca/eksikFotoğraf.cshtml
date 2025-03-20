@@ -1,0 +1,21 @@
+﻿@using cimenOtoV11.Models
+@model List<int>
+@{
+    ViewBag.Title = "eksikFotoğraf";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>eksikFotoğraf</h2>
+
+@foreach (var id in Model) // Eksik fotoğrafı olan ürün ID'lerini döner
+{
+    <tr>
+        <td style="color:#ffc300;">Ürün ID: @id</td>
+        <td>
+            <form method="post" action="/adminParca/guncelleFoto/@id" enctype="multipart/form-data">
+                <input type="file" name="parcaImage" accept="image/*" required>
+                <button type="submit" class="btn btn-primary">Fotoğraf Yükle</button>
+            </form>
+        </td>
+    </tr>
+}

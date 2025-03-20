@@ -1,0 +1,38 @@
+﻿@using cimenOtoV11.Models
+@model List<tbl_AracMarka>
+@{
+    ViewBag.Title = "Markalar | Oto Yedek Parça | Çimen Oto";
+    <link rel="icon" type="image/png" href="/Content/images/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="color:white;">ARAÇ MARKA İŞLEMLERİ</h2>
+@{
+    db_CimenOtoEntities db = new db_CimenOtoEntities();
+    var top = db.tbl_AracMarka.Count();
+    <h3 style="color:#ffc300;">Toplam <strong>@top</strong> kayıt bulundu.</h3>
+}
+<a style="margin:10px; color:black;" href="/adminMarka/ekle" class="btn btn-success">MARKA EKLE</a>
+<table class="table-bordered" style="color:white; width:100%;">
+    <thead>
+        <tr style="background-color:white; color:black;">
+            <th>Marka İD</th>
+            <th>Marka ADI</th>
+            <th>SİL</th>
+            <th>GÜNCELLE</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="color:#ffc300;">@item.markaID</td>
+                <td>@item.markaAdi</td>
+                <td><a href="/adminMarka/sil/@item.markaID" class="btn btn-danger">SİL</a></td>
+                <td><a href="/adminMarka/markaGetir/@item.markaID" class="btn btn-primary">GÜNCELLE</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

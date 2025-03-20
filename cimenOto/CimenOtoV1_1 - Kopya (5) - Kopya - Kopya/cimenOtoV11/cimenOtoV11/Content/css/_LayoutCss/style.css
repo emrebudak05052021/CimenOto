@@ -1,0 +1,381 @@
+﻿
+/* Masaüstü ve büyük ekranlar için */
+body {
+    font-size: 16px !important;
+}
+
+h1 {
+    font-size: 36px !important;
+}
+
+h2 {
+    font-size: 30px !important;
+}
+
+/* Küçük ekranlar (mobil) için */
+@media (max-width: 768px) {
+    body {
+        font-size: 10px !important; /* Mobil için biraz daha küçük font boyutu */
+    }
+
+    h1 {
+        font-size: 22px !important;
+    }
+
+    h2 {
+        font-size: 24px !important;
+    }
+}
+
+
+
+/**/
+
+
+body {
+    max-width: 100%;
+    height: auto;
+    margin: 0px;
+    padding: 0px;
+    line-height: 1.5;
+    box-sizing: border-box;
+    background-color: white;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+img {
+    pointer-events: none;
+    -webkit-user-drag: none;
+    user-select: none;
+}
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+i{
+    margin-right:5px !important;
+}
+/********************ÜST NAVBAR***********************/
+.ustNavbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #1c1c1c; /* Arka planı korur */
+}
+ul#main {
+    display: flex; /* Flexbox düzeni */
+    justify-content: center; /* Tüm öğeleri yatay olarak ortalar */
+    align-items: center; /* Dikey olarak ortalar */
+    list-style: none; /* Varsayılan madde işaretlerini kaldırır */
+    padding: 5px;
+    margin: 0;
+    background-color: #1c1c1c; /* Navbar arka plan rengi */
+    width: 100%; /* Tüm genişliği kaplar */
+    flex-wrap: wrap; /* Ekran daraldığında satır taşmalarını önler */
+    top: 0; /* Sayfanın üst kısmına yapıştırır */
+    z-index: 1000; /* İçeriklerin üzerinde görünmesini sağlar */
+    border: 1.5px solid #AC1527;
+}
+    ul#main li ul {
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 3rem;
+    }
+
+    ul#main li {
+        float: left;
+        position: relative;
+        width: 160px;
+    }
+
+        ul#main li a {
+            display: block;
+            padding: 10px 10px; /* İçerik için dinamik boşluk */
+            background-color: #1c1c1c;
+            text-align: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem; /* Esnek yazı boyutu, rem birimi kullanarak sayfa boyutundan bağımsız */
+        }
+
+            ul#main li a:hover {
+                background-color: #2c2c2c;
+            }
+
+        ul#main li:hover ul {
+            display: block; /* Hover ile alt menüyü gösterir */
+            transition: 0.9s; /* Daha kısa geçiş animasyonu */
+            z-index: 10000; /* Üstte görünmesi için */
+        }
+
+
+@media (max-width: 768px) {
+    html{
+        font-size:10px !important;
+    }
+    ul#main {
+        flex-wrap: wrap; /* Satır dolduğunda alt satıra geçer */
+        flex-direction: row; /* Yatay hizalama korunur */
+        justify-content: flex-start; /* Sol hizalı */
+    }
+
+        ul#main li {
+            flex: 1 1 auto; /* Her öğe kendi içeriğine göre boyutlanır */
+            width: 100px;
+        }
+
+            ul#main li ul {
+                display: none;
+                position: absolute;
+                left: 0;
+                top: 2.5rem;
+            }
+
+            ul#main li a {
+                padding: 10px; /* Boşluk azaltılır */
+                display: block; /* Linkler blok yapıda olur */
+                font-size: 1rem; /* Daha küçük ekranlarda daha küçük font boyutu */
+            }
+
+            ul#main li ul li a {
+                font-size: 0.7rem; /* Daha küçük ekranlarda daha küçük font boyutu */
+            }
+}
+/*******************************NAVBAR*******************************/
+.Navbar {
+    display: flex;
+    height: auto;
+    overflow-x: auto; /* Yatay kaydırma ekler */
+    padding: 10px 0; /* Üst ve alt boşluk */
+    background-color: #1c1c1c; /* Navbar arka plan rengi */
+}
+
+#accordionSidebar {
+    display: flex; /* Liste öğelerini yatay hizalar */
+    gap: 20px; /* Öğeler arasına boşluk ekler */
+    padding: 0;
+    margin: 0;
+    list-style: none; /* Madde işaretlerini kaldırır */
+    white-space: nowrap; /* Metnin satıra sarmasını engeller */
+}
+
+.nav-item {
+    display: inline-block; /* Liste öğelerini satır içinde hizalar */
+    text-align: center;
+}
+
+    .nav-item a {
+        display: block;
+        text-decoration: none; /* Link alt çizgisi kaldırılır */
+        color: white;
+        text-align: center;
+        transition: 0.3s; /* Hover geçişi */
+    }
+
+    .nav-item img {
+        max-width: 50px;
+        max-height: 50px;
+        margin-bottom: 5px;
+    }
+
+    .nav-item a:hover {
+        color: #f0f0f0; /* Hover durumunda renk değişimi */
+        background-color: #2c2c2c; /* Hover arka plan değişimi */
+        border-radius: 5px; /* Hover durumunda köşe yuvarlama */
+    }
+
+/*****************************************CONTENT ALANI ********************************************/
+#content {
+    background-color: #1C1C1C;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    text-align: center;
+    padding: 10px;
+}
+
+#anaSayfa {
+    font-size: 1rem;
+}
+/********ANA SAYFA MARKA İCONLARI**********/
+.marka-icons-coursel {
+    width: 100%; /* Carousel'in genişliği */
+    overflow: hidden; /* Taşan görüntüleri gizler */
+    position: relative; /* Konumlandırma için gerekli */
+    background-color: #353232; /* Arka plan rengi */
+    padding: 10px 0;
+}
+
+.carousel-track {
+    display: flex; /* Yatayda sıralar */
+    gap: 15px; /* Görseller arasında boşluk bırakır */
+    animation: scroll 7.5s linear infinite; /* Animasyon ekler */
+}
+
+.carousel-track img {
+    width: 100px; /* Görsel genişliği */
+    height: auto; /* Oran koruma */
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+.card {
+    height: auto !important;
+    z-index: 1 !important;
+    color: black;
+}
+
+.card-img-top {
+    max-width: 100%; /* Resmi yatay olarak küçültür */
+    height: auto; /* Oranını korur */
+    margin: 0 auto; /* Resmi ortalar */
+}
+
+/******************************FOOTER******************************/
+#footer {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    background-color: #1c1c1c;
+    align-items: center;
+    text-align:center;
+}
+.footer-kolon div ul li{
+    padding:10px;
+}
+#footer .footer-kolon div div div ul li a{
+    color:white;
+}
+.footer-icons ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+}
+
+    .footer-icons ul li {
+        padding: 0.5vw;
+        margin-top: 0.5vh;
+    }
+
+        .footer-icons ul li a {
+            padding: 0.5vw;
+            margin-top: 0.5vh;
+            color: white;
+        }
+
+            .footer-icons ul li a:hover {
+                color: #FFC300;
+                transition: 0.7s;
+            }
+
+/***************************BİZE ULAŞIN***********************/
+.bizeUlasin hr {
+    border-top: 1px solid #000;
+    width: 50%;
+}
+
+.bizeUlasin a {
+    color: #000;
+}
+
+    .bizeUlasin a:link {
+        text-decoration: none;
+    }
+
+.bizeUlasin .box1 a p,
+.bizeUlasin .box1 a h3,
+.bizeUlasin .box1 a i {
+    color: white;
+}
+
+.bizeUlasin .box2 {
+}
+
+    .bizeUlasin .box2 a p,
+    .bizeUlasin .box2 a h3,
+    .bizeUlasin .box2 a i {
+        color: white;
+    }
+
+.bizeUlasin .box3 {
+}
+
+.bizeUlasin p span a {
+    color: #FFC300;
+}
+
+#author a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/*********************MAGAZAMİZ***********************/
+#magazamizTable tr td img {
+    width: 25vw;
+    height: 25vw;
+    border-radius: 15px;
+    padding: 2vw;
+}
+/*********************URUN DETAY SAYFASI***********************/
+
+.urunDetay-container h1 {
+    color: black;
+    font: bold;
+    background-color: #FFC300;
+    padding: 15px;
+    border-radius: 15px;
+    font-size: 2vw;
+}
+
+.urunDetay-container .urunDetay {
+    width: auto;
+    display: flex;
+    margin-top: 25px;
+}
+
+    .urunDetay-container .urunDetay div img {
+        width: 25vw;
+        height: 20vw;
+        border-radius: 10px;
+    }
+
+.urunDetay-container input {
+    color: black;
+}
+/*********************KAYİT OL***********************/
+.kayitOl {
+    background-color: #FFC300;
+}
+
+    .kayitOl tr td input {
+        width: 100%;
+        color: black;
+    }
+
+/*********************ADMİN***********************/
+
+#islemler_container {
+    padding: 1vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+    #islemler_container div {
+        padding: 1vw;
+        height: 100px;
+    }
+
+        #islemler_container div button {
+            color: black;
+        }

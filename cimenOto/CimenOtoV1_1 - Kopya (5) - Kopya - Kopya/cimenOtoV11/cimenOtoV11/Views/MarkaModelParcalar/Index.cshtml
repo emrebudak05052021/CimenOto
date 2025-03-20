@@ -1,0 +1,67 @@
+﻿@using cimenOtoV11.Models
+@model List<tbl_AracParca>
+@{
+    ViewBag.Title = "Parçalar | Oto Yedek Parça | Çimen Oto";
+    <link rel="icon" type="image/png" href="~/Content/images/logo.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="anaSayfa">
+    <div style="display:flex; justify-content:center; margin:10px;">
+        <a style="padding:10px; color:black;" class="btn btn-warning" href="/Home/parcaAra"><i class="fa-solid fa-magnifying-glass"></i>Parça Ara</a>
+    </div>
+    <div>
+        <h4 style="color:white;">Ürün Görselleri <strong style="color:red;">Temsilidir</strong>.Gerçeği Yansıtmamaktadır.Ürünlerimiz orjinal ve sıfırdır.</h4>
+    </div>
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-3">
+                    <div class="card">
+                        @*<img style="width:200px; height:150px;" class="card-img-top" src="@item.parcaImage" alt="Card image cap">*@
+                        <img style="width:200px; height:150px;" class="card-img-top" src="@item.parcaImage" alt="Card image cap" onerror="this.onerror=null;this.src='/Content/images/parca.png';">
+                        <div class="card-body">
+                            <p>Araç Modeli: <strong>@item.tbl_AracMarka.markaAdi</strong></p>
+                            <p>Araç Modeli: <strong>@item.modelID</strong></p>
+                            <strong>Orginal No: <h1>@item.orginalKod</h1></strong>
+                            <p>Üretici Kod: <strong>@item.ureticiKod</strong></p>
+                            <h2 class="card-title">@item.pAd</h2>
+                            <h4 style="color:green;">@item.kdvMaliyet TL</h4>
+                            <p>Stok son : <strong style="color:red">@item.stokMiktari</strong> Adet</p>
+                            <a style="color:black;" href="/UrunDetay/UrunDetayListele/@item.parcaID" class="btn btn-warning">Ürüne Git</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- Sayfalama -->
+        <div class="row">
+            <div class="col-12 text-center">
+                <nav>
+                    <ul style="justify-content:space-around" class="pagination">
+                        @if (ViewBag.CurrentPage > 1)
+                        {
+                            <li class="page-item">
+                                <a style="color:red;" class="page-link" href="@Url.Action("Index", new { page = ViewBag.CurrentPage - 1 })" aria-label="Previous">
+                                    <span aria-hidden="true">GERİ</span>
+                                </a>
+                            </li>
+                        }
+                        @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+                        {
+                            <li class="page-item">
+                                <a style="color:green;" class="page-link" href="@Url.Action("Index", new { page = ViewBag.CurrentPage + 1 })" aria-label="Next">
+                                    <span aria-hidden="true">İLERİ</span>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+

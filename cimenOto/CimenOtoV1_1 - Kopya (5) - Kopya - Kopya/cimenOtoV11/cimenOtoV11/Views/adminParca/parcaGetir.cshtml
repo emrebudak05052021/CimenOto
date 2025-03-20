@@ -1,0 +1,82 @@
+﻿@using cimenOtoV11.Models
+@model cimenOtoV11.Models.tbl_AracParca
+@{
+    ViewBag.Title = "Parça Detayları | Oto Yedek Parça | Çimen Oto";
+    <link rel="icon" type="image/png" href="/Content/images/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="color:white;">MARKA GÜNCELLE</h2>
+
+@using (Html.BeginForm("guncelle", "adminParca", FormMethod.Post))
+{
+    <table class="table table-bordered">
+        <tr style="text-align:center;">
+            <td style="color:white;">Parça ID</td>
+            <td>@Html.TextBoxFor(x => x.parcaID, new { @class = "form-control", required = "required" })</td>
+        </tr>
+        <tr style="text-align:center;">
+            <td style="color:white;">MARKA</td>
+            <td>@Html.TextBoxFor(x => x.markaID, new { @class = "form-control", required = "required" })</td>
+        </tr>
+        <tr style="text-align:center;">
+            <td style="color:white;">Yıl</td>
+            <td>@Html.TextBoxFor(x => x.yil, new { @class = "form-control", required = "required" })</td>
+        </tr>
+        <tr style="text-align:center;">
+            <td style="color:white;">Parça Adı</td>
+            <td>@Html.TextBoxFor(x => x.pAd, new { @class = "form-control", required = "required" })</td>
+        </tr>
+        <tr style="text-align:center;">
+            <td style="color:white;">Araç Model</td>
+            <td>@Html.TextBoxFor(x => x.modelID, new { @class = "form-control", required = "required" })</td>
+        </tr>
+        <tr style="text-align:center;">
+            <td style="color:white;">Üretici</td>
+            <td>@Html.TextBoxFor(x => x.Uretici, new { @class = "form-control", required = "required" })</td>
+        </tr>
+        <tr style="text-align:center;">
+            <td style="color:white;">Üretici Kod</td>
+            <td>@Html.TextBoxFor(x => x.ureticiKod, new { @class = "form-control", required = "required" })</td>
+        </tr>
+        <tr style="text-align:center;">
+            <td style="color:white;">Orjinal Kod</td>
+            <td>@Html.TextBoxFor(x => x.orginalKod, new { @class = "form-control" })</td>
+        </tr>
+        <tr style="text-align:center;">
+            <td style="color:white;">Açıklama</td>
+            <td>@Html.TextBoxFor(x => x.aciklama, new { @class = "form-control" })</td>
+        </tr>
+        <tr style="text-align:center;">
+            <td style="color:white;">İçerik</td>
+            <td>@Html.TextBoxFor(x => x.icerik, new { @class = "form-control" })</td>
+        </tr>
+        <tr style="text-align:center;">
+            <td style="color:white;">Motor Tipi</td>
+            <td>@Html.TextBoxFor(x => x.motorTip, new { @class = "form-control" })</td>
+        </tr>
+        <tr style="text-align:center;">
+            <td style="color:white;">İskonto</td>
+            <td>@Html.TextBoxFor(x => x.isk, new { @class = "form-control", required = "required" })</td>
+        </tr>
+        <tr style="text-align:center;">
+            <td style="color:white;">KDV</td>
+            <td>@Html.TextBoxFor(x => x.kdv, new { @class = "form-control", required = "required" })</td>
+        </tr>
+        <tr style="text-align:center;">
+            <td style="color:white;">Liste Fiyatı</td>
+            <td>@Html.TextBoxFor(x => x.listeFiyat, new { @class = "form-control", required = "required" })</td>
+        </tr>
+        <tr style="text-align:center;">
+            <td style="color:white;">Satış Fiyatı</td>
+            <td>@Html.TextBoxFor(x => x.kdvMaliyet, new { @class = "form-control", required = "required" })</td>
+        </tr>
+        <tr style="text-align:center;">
+            <td style="color:white;">Stok Miktarı</td>
+            <td>@Html.TextBoxFor(x => x.stokMiktari, new { @class = "form-control", required = "required" })</td>
+        </tr>
+    </table>
+    <button class="btn btn-success">PARÇA GÜNCELLE</button>
+}

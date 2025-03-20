@@ -1,0 +1,21 @@
+﻿@using cimenOtoV11.Models
+@model cimenOtoV11.Models.tbl_SiparisDurum
+@{
+    ViewBag.Title = "Sipariş Durum Ekle | Oto Yedek Parça | Çimen Oto";
+    <link rel="icon" type="image/png" href="~/Content/images/logo.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("durumEkle", "SiparisDurum", FormMethod.Post))
+{
+    <table class="table-bordered" style="color:white; width:100%;">
+        <tr>
+            <td>Durum(örn Hazırlanıyor):</td>
+            <td>@Html.TextBoxFor(x => x.durum, new { @class = "form-control" })</td>
+        </tr>
+    </table>
+    <button style="color:black;" class="btn btn-success">DURUM EKLE</button>
+}
+

@@ -1,0 +1,19 @@
+﻿@model Iyzipay.Model.Payment
+@{
+    ViewBag.Title = "Ödeme Başarılı | Oto Yedek Parça | Çimen Oto";
+    <link rel="icon" type="image/png" href="~/Content/images/logo.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div style="color:white;">
+    <h1>Ödeme Başarılı!</h1>
+    <p>Siparişinizi aldık. Teşekkür ederiz.</p>
+    <p>Sipariş Durumunuzu "Siparişlerim" bölümünüzden takip edebilirsiniz.</p>
+    <div>
+        <p><strong>Ödeme Durumu:</strong> @Model.Status</p>
+        <p><strong>Ödeme ID:</strong> @Model.PaymentId</p>
+        <p><strong>Konuşma ID:</strong> @Model.ConversationId</p>
+    </div>
+</div>
+

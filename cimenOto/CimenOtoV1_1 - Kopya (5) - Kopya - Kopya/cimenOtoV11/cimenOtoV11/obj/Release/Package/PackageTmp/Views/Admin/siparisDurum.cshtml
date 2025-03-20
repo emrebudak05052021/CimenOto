@@ -1,0 +1,30 @@
+﻿@using cimenOtoV11.Models
+@model tbl_Siparisler
+@{
+    ViewBag.Title = "siparisDurum";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="color:white;">SİPARİŞ DURUM GÜNCELLE</h2>
+
+@using (Html.BeginForm("DurumGuncelle", "Admin", FormMethod.Post))
+{
+    <div>
+        <table class="table-bordered" style="color:white; width:100%;">
+            <tr>
+                <td>Sipariş İD:</td>
+                <td>@Html.TextBoxFor(x => x.siparisID, new { @class = "form-control", @readonly = "readonly" })</td>
+            </tr>
+            <tr>
+                <td>Güncel Sipariş Durumu:</td>
+                <td>
+                    @Html.DropDownListFor(x => x.sipDurum, (List<SelectListItem>)ViewBag.dgr,
+                        new { @class = "form-control", @required = "required" })
+                </td>
+            </tr>
+        </table>
+    </div>
+    <button style="color:black;" class="btn btn-success">Sipariş Durumunu Güncelle</button>
+}
+
+

@@ -1,0 +1,4 @@
+﻿User-agent: *
+Disallow: /admin/
+Allow: /
+Sitemap: https://www.guarddevelop.com.tr/sitemap.xml

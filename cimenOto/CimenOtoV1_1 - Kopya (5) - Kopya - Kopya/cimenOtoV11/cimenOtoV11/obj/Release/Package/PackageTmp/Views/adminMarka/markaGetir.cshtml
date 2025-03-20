@@ -1,0 +1,26 @@
+﻿@using cimenOtoV11.Models
+@model cimenOtoV11.Models.tbl_AracMarka
+@{
+    ViewBag.Title = "Marka Detayı | Oto Yedek Parça | Çimen Oto";
+    <link rel="icon" type="image/png" href="/Content/images/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="color:white;">MARKA GÜNCELLE</h2>
+
+@using (Html.BeginForm("guncelle", "adminMarka", FormMethod.Post))
+{
+    <table class="table-bordered" style="color:white; width:100%;">
+        <tr>
+            <th>@Html.LabelFor(x => x.markaID)</th>
+            <th>@Html.TextBoxFor(x => x.markaID, new { @class = "form-control", @readonly = "readonly" })</th>
+        </tr>
+        <tr>
+            <th>@Html.LabelFor(x => x.markaAdi)</th>
+            <th>@Html.TextBoxFor(x => x.markaAdi, new { @class = "form-control" })</th>
+        </tr>
+    </table>
+    <button class="btn btn-primary">GÜNCELLE</button>
+}

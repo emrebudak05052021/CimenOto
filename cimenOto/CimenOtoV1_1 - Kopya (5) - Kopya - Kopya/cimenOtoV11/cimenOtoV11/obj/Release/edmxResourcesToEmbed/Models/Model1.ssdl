@@ -1,0 +1,431 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db_CimenOtoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="MesafeliSatisSozlesmeleri">
+    <Key>
+      <PropertyRef Name="SozlesmeID" />
+    </Key>
+    <Property Name="SozlesmeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MusteriID" Type="uniqueidentifier" />
+    <Property Name="SiparisID" Type="int" />
+    <Property Name="SozlesmeMetni" Type="nvarchar(max)" />
+    <Property Name="OlusturmaTarihi" Type="datetime" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tbl_Adres">
+    <Key>
+      <PropertyRef Name="adresID" />
+    </Key>
+    <Property Name="adresID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userID" Type="uniqueidentifier" />
+    <Property Name="adresSatir1" Type="nvarchar" MaxLength="250" />
+    <Property Name="adresSatir2" Type="nvarchar" MaxLength="150" />
+    <Property Name="il" Type="nvarchar" MaxLength="50" />
+    <Property Name="ilce" Type="nvarchar" MaxLength="50" />
+    <Property Name="postaKodu" Type="nvarchar" MaxLength="20" />
+    <Property Name="adresTuru" Type="nvarchar" MaxLength="50" />
+    <Property Name="varsayilanMi" Type="bit" />
+    <Property Name="olusturmaTarih" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_AracMarka">
+    <Key>
+      <PropertyRef Name="markaID" />
+    </Key>
+    <Property Name="markaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="markaAdi" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="tbl_AracModel">
+    <Key>
+      <PropertyRef Name="modelID" />
+    </Key>
+    <Property Name="modelID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="markaID" Type="int" />
+    <Property Name="modelAdi" Type="varchar" MaxLength="40" />
+    <Property Name="modelYili" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="tbl_AracParca">
+    <Key>
+      <PropertyRef Name="parcaID" />
+    </Key>
+    <Property Name="parcaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="markaID" Type="int" />
+    <Property Name="modelID" Type="nvarchar" MaxLength="50" />
+    <Property Name="Uretici" Type="nvarchar" MaxLength="50" />
+    <Property Name="ureticiKod" Type="nvarchar" MaxLength="50" />
+    <Property Name="orginalKod" Type="nvarchar" MaxLength="50" />
+    <Property Name="pAd" Type="nvarchar" MaxLength="100" />
+    <Property Name="aciklama" Type="nvarchar" MaxLength="255" />
+    <Property Name="icerik" Type="nvarchar" MaxLength="50" />
+    <Property Name="motorTip" Type="nvarchar" MaxLength="50" />
+    <Property Name="yil" Type="nvarchar" MaxLength="100" />
+    <Property Name="isk" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="kdv" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="listeFiyat" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="kdvMaliyet" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="stokMiktari" Type="tinyint" />
+    <Property Name="parcaImage" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="tbl_Sepet">
+    <Key>
+      <PropertyRef Name="sepetID" />
+    </Key>
+    <Property Name="sepetID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="kulID" Type="uniqueidentifier" />
+    <Property Name="parcaID" Type="int" />
+    <Property Name="miktar" Type="tinyint" />
+    <Property Name="eklenmeTarihi" Type="datetime" />
+    <Property Name="birimFiyat" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="toplamTutar" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="tbl_SİparisDetay">
+    <Key>
+      <PropertyRef Name="siparisDetayID" />
+    </Key>
+    <Property Name="siparisDetayID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="siparisID" Type="int" />
+    <Property Name="parcaID" Type="int" />
+    <Property Name="adres" Type="int" />
+    <Property Name="miktar" Type="tinyint" />
+    <Property Name="birimFiyat" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="toplamTutar" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="tbl_SiparisDurum">
+    <Key>
+      <PropertyRef Name="durumID" />
+    </Key>
+    <Property Name="durumID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="durum" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tbl_Siparisler">
+    <Key>
+      <PropertyRef Name="siparisID" />
+    </Key>
+    <Property Name="siparisID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="kulID" Type="uniqueidentifier" />
+    <Property Name="siparisTarihi" Type="datetime" />
+    <Property Name="toplamTutar" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="sipDurum" Type="tinyint" />
+    <Property Name="adres" Type="int" />
+    <Property Name="sozlesmeKabul" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbl_TeslimatIade">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="metin" Type="nvarchar(max)" />
+    <Property Name="tel" Type="char" MaxLength="11" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="adres" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="tbl_User">
+    <Key>
+      <PropertyRef Name="kulID" />
+    </Key>
+    <Property Name="kulID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ad" Type="varchar" MaxLength="30" />
+    <Property Name="soyad" Type="varchar" MaxLength="30" />
+    <Property Name="userName" Type="nvarchar" MaxLength="50" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" />
+    <Property Name="eMail" Type="nvarchar" MaxLength="50" />
+    <Property Name="telNo" Type="char" MaxLength="11" />
+    <Property Name="adminMi" Type="tinyint" />
+    <Property Name="adres" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'db_CimenOto.dbo.tbl_veri' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tbl_veri">
+          <Property Name="orginalKod" Type="nvarchar" MaxLength="255" />
+          <Property Name="kdvMaliyet" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>-->
+  <EntityType Name="tbl_Yorum">
+    <Key>
+      <PropertyRef Name="yorumID" />
+    </Key>
+    <Property Name="yorumID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="kulID" Type="uniqueidentifier" />
+    <Property Name="parcaID" Type="int" />
+    <Property Name="yildiz" Type="tinyint" />
+    <Property Name="yorum" Type="nvarchar" MaxLength="300" />
+    <Property Name="tarih" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_MesafeliSatisSozlesmeleri_tbl_Siparisler">
+    <End Role="tbl_Siparisler" Type="Self.tbl_Siparisler" Multiplicity="0..1" />
+    <End Role="MesafeliSatisSozlesmeleri" Type="Self.MesafeliSatisSozlesmeleri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Siparisler">
+        <PropertyRef Name="siparisID" />
+      </Principal>
+      <Dependent Role="MesafeliSatisSozlesmeleri">
+        <PropertyRef Name="SiparisID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MesafeliSatisSozlesmeleri_tbl_User">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1" />
+    <End Role="MesafeliSatisSozlesmeleri" Type="Self.MesafeliSatisSozlesmeleri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="kulID" />
+      </Principal>
+      <Dependent Role="MesafeliSatisSozlesmeleri">
+        <PropertyRef Name="MusteriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Adres_tbl_User">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1" />
+    <End Role="tbl_Adres" Type="Self.tbl_Adres" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="kulID" />
+      </Principal>
+      <Dependent Role="tbl_Adres">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_AracModel_tbl_AracMarka">
+    <End Role="tbl_AracMarka" Type="Self.tbl_AracMarka" Multiplicity="0..1" />
+    <End Role="tbl_AracModel" Type="Self.tbl_AracModel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_AracMarka">
+        <PropertyRef Name="markaID" />
+      </Principal>
+      <Dependent Role="tbl_AracModel">
+        <PropertyRef Name="markaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_AracParca_tbl_AracMarka">
+    <End Role="tbl_AracMarka" Type="Self.tbl_AracMarka" Multiplicity="0..1" />
+    <End Role="tbl_AracParca" Type="Self.tbl_AracParca" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_AracMarka">
+        <PropertyRef Name="markaID" />
+      </Principal>
+      <Dependent Role="tbl_AracParca">
+        <PropertyRef Name="markaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Sepet_tbl_AracParca">
+    <End Role="tbl_AracParca" Type="Self.tbl_AracParca" Multiplicity="0..1" />
+    <End Role="tbl_Sepet" Type="Self.tbl_Sepet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_AracParca">
+        <PropertyRef Name="parcaID" />
+      </Principal>
+      <Dependent Role="tbl_Sepet">
+        <PropertyRef Name="parcaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Sepet_tbl_User">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1" />
+    <End Role="tbl_Sepet" Type="Self.tbl_Sepet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="kulID" />
+      </Principal>
+      <Dependent Role="tbl_Sepet">
+        <PropertyRef Name="kulID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_SİparisDetay_tbl_Adres">
+    <End Role="tbl_Adres" Type="Self.tbl_Adres" Multiplicity="0..1" />
+    <End Role="tbl_SİparisDetay" Type="Self.tbl_SİparisDetay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Adres">
+        <PropertyRef Name="adresID" />
+      </Principal>
+      <Dependent Role="tbl_SİparisDetay">
+        <PropertyRef Name="adres" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_SİparisDetay_tbl_AracParca1">
+    <End Role="tbl_AracParca" Type="Self.tbl_AracParca" Multiplicity="0..1" />
+    <End Role="tbl_SİparisDetay" Type="Self.tbl_SİparisDetay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_AracParca">
+        <PropertyRef Name="parcaID" />
+      </Principal>
+      <Dependent Role="tbl_SİparisDetay">
+        <PropertyRef Name="parcaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_SİparisDetay_tbl_Siparisler1">
+    <End Role="tbl_Siparisler" Type="Self.tbl_Siparisler" Multiplicity="0..1" />
+    <End Role="tbl_SİparisDetay" Type="Self.tbl_SİparisDetay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Siparisler">
+        <PropertyRef Name="siparisID" />
+      </Principal>
+      <Dependent Role="tbl_SİparisDetay">
+        <PropertyRef Name="siparisID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Siparisler_tbl_Adres">
+    <End Role="tbl_Adres" Type="Self.tbl_Adres" Multiplicity="0..1" />
+    <End Role="tbl_Siparisler" Type="Self.tbl_Siparisler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Adres">
+        <PropertyRef Name="adresID" />
+      </Principal>
+      <Dependent Role="tbl_Siparisler">
+        <PropertyRef Name="adres" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Siparisler_tbl_SiparisDurum">
+    <End Role="tbl_SiparisDurum" Type="Self.tbl_SiparisDurum" Multiplicity="0..1" />
+    <End Role="tbl_Siparisler" Type="Self.tbl_Siparisler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_SiparisDurum">
+        <PropertyRef Name="durumID" />
+      </Principal>
+      <Dependent Role="tbl_Siparisler">
+        <PropertyRef Name="sipDurum" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Siparisler_tbl_User">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1" />
+    <End Role="tbl_Siparisler" Type="Self.tbl_Siparisler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="kulID" />
+      </Principal>
+      <Dependent Role="tbl_Siparisler">
+        <PropertyRef Name="kulID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Siparisler_tbl_User1">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1" />
+    <End Role="tbl_Siparisler" Type="Self.tbl_Siparisler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="kulID" />
+      </Principal>
+      <Dependent Role="tbl_Siparisler">
+        <PropertyRef Name="kulID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Yorum_tbl_AracParca">
+    <End Role="tbl_AracParca" Type="Self.tbl_AracParca" Multiplicity="0..1" />
+    <End Role="tbl_Yorum" Type="Self.tbl_Yorum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_AracParca">
+        <PropertyRef Name="parcaID" />
+      </Principal>
+      <Dependent Role="tbl_Yorum">
+        <PropertyRef Name="parcaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Yorum_tbl_User">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1" />
+    <End Role="tbl_Yorum" Type="Self.tbl_Yorum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="kulID" />
+      </Principal>
+      <Dependent Role="tbl_Yorum">
+        <PropertyRef Name="kulID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="db_CimenOtoModelStoreContainer">
+    <EntitySet Name="MesafeliSatisSozlesmeleri" EntityType="Self.MesafeliSatisSozlesmeleri" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Adres" EntityType="Self.tbl_Adres" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_AracMarka" EntityType="Self.tbl_AracMarka" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_AracModel" EntityType="Self.tbl_AracModel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_AracParca" EntityType="Self.tbl_AracParca" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Sepet" EntityType="Self.tbl_Sepet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_SİparisDetay" EntityType="Self.tbl_SİparisDetay" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_SiparisDurum" EntityType="Self.tbl_SiparisDurum" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Siparisler" EntityType="Self.tbl_Siparisler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_TeslimatIade" EntityType="Self.tbl_TeslimatIade" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_User" EntityType="Self.tbl_User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Yorum" EntityType="Self.tbl_Yorum" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_MesafeliSatisSozlesmeleri_tbl_Siparisler" Association="Self.FK_MesafeliSatisSozlesmeleri_tbl_Siparisler">
+      <End Role="tbl_Siparisler" EntitySet="tbl_Siparisler" />
+      <End Role="MesafeliSatisSozlesmeleri" EntitySet="MesafeliSatisSozlesmeleri" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MesafeliSatisSozlesmeleri_tbl_User" Association="Self.FK_MesafeliSatisSozlesmeleri_tbl_User">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="MesafeliSatisSozlesmeleri" EntitySet="MesafeliSatisSozlesmeleri" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Adres_tbl_User" Association="Self.FK_tbl_Adres_tbl_User">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_Adres" EntitySet="tbl_Adres" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_AracModel_tbl_AracMarka" Association="Self.FK_tbl_AracModel_tbl_AracMarka">
+      <End Role="tbl_AracMarka" EntitySet="tbl_AracMarka" />
+      <End Role="tbl_AracModel" EntitySet="tbl_AracModel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_AracParca_tbl_AracMarka" Association="Self.FK_tbl_AracParca_tbl_AracMarka">
+      <End Role="tbl_AracMarka" EntitySet="tbl_AracMarka" />
+      <End Role="tbl_AracParca" EntitySet="tbl_AracParca" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Sepet_tbl_AracParca" Association="Self.FK_tbl_Sepet_tbl_AracParca">
+      <End Role="tbl_AracParca" EntitySet="tbl_AracParca" />
+      <End Role="tbl_Sepet" EntitySet="tbl_Sepet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Sepet_tbl_User" Association="Self.FK_tbl_Sepet_tbl_User">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_Sepet" EntitySet="tbl_Sepet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_SİparisDetay_tbl_Adres" Association="Self.FK_tbl_SİparisDetay_tbl_Adres">
+      <End Role="tbl_Adres" EntitySet="tbl_Adres" />
+      <End Role="tbl_SİparisDetay" EntitySet="tbl_SİparisDetay" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_SİparisDetay_tbl_AracParca1" Association="Self.FK_tbl_SİparisDetay_tbl_AracParca1">
+      <End Role="tbl_AracParca" EntitySet="tbl_AracParca" />
+      <End Role="tbl_SİparisDetay" EntitySet="tbl_SİparisDetay" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_SİparisDetay_tbl_Siparisler1" Association="Self.FK_tbl_SİparisDetay_tbl_Siparisler1">
+      <End Role="tbl_Siparisler" EntitySet="tbl_Siparisler" />
+      <End Role="tbl_SİparisDetay" EntitySet="tbl_SİparisDetay" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Siparisler_tbl_Adres" Association="Self.FK_tbl_Siparisler_tbl_Adres">
+      <End Role="tbl_Adres" EntitySet="tbl_Adres" />
+      <End Role="tbl_Siparisler" EntitySet="tbl_Siparisler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Siparisler_tbl_SiparisDurum" Association="Self.FK_tbl_Siparisler_tbl_SiparisDurum">
+      <End Role="tbl_SiparisDurum" EntitySet="tbl_SiparisDurum" />
+      <End Role="tbl_Siparisler" EntitySet="tbl_Siparisler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Siparisler_tbl_User" Association="Self.FK_tbl_Siparisler_tbl_User">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_Siparisler" EntitySet="tbl_Siparisler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Siparisler_tbl_User1" Association="Self.FK_tbl_Siparisler_tbl_User1">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_Siparisler" EntitySet="tbl_Siparisler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Yorum_tbl_AracParca" Association="Self.FK_tbl_Yorum_tbl_AracParca">
+      <End Role="tbl_AracParca" EntitySet="tbl_AracParca" />
+      <End Role="tbl_Yorum" EntitySet="tbl_Yorum" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Yorum_tbl_User" Association="Self.FK_tbl_Yorum_tbl_User">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_Yorum" EntitySet="tbl_Yorum" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

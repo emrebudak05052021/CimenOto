@@ -1,0 +1,42 @@
+﻿@using cimenOtoV11.Models
+@model cimenOtoV11.Models.tbl_Adres
+@{
+    ViewBag.Title = "Adres Ekle | Oto Yedek Parça | Çimen Oto";
+    <link rel="icon" type="image/png" href="~/Content/images/logo.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+
+}
+@using (Html.BeginForm("adresEkle", "User", FormMethod.Post))
+{
+    <table class="table table-bordered">
+        <tr style="text-align:center;">
+            <td style="color:white;">Açık Adres 1</td>
+            <td>@Html.TextBoxFor(x => x.adresSatir1, new { @class = "form-control", required = "required" })</td>
+        </tr>
+        <tr style="text-align:center;">
+            <td style="color:white;">Açık Adres 2</td>
+            <td>@Html.TextBoxFor(x => x.adresSatir2, new { @class = "form-control" })</td>
+        </tr>
+        <tr style="text-align:center;">
+            <td style="color:white;">İl</td>
+            <td>@Html.TextBoxFor(x => x.il, new { @class = "form-control", required = "required" })</td>
+        </tr>
+        <tr style="text-align:center;">
+            <td style="color:white;">İlçe</td>
+            <td>@Html.TextBoxFor(x => x.ilce, new { @class = "form-control", required = "required" })</td>
+        </tr>
+        <tr style="text-align:center;">
+            <td style="color:white;">Posta Kodu</td>
+            <td>@Html.TextBoxFor(x => x.postaKodu, new { @class = "form-control", required = "required" })</td>
+        </tr>
+        <tr style="text-align:center;">
+            <td style="color:white;">Adres Türü(örn Ev)</td>
+            <td>@Html.TextBoxFor(x => x.adresTuru, new { @class = "form-control", required = "required" })</td>
+        </tr>
+    </table>
+    <button class="btn btn-success">Adresi Kaydet</button>
+}

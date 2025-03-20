@@ -1,0 +1,38 @@
+﻿@using cimenOtoV11.Models
+@model List<tbl_AracParca>
+@{
+    ViewBag.Title = "Parcalar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link rel="icon" type="image/png" href="~/Content/images/logo.png">
+
+}
+
+<div id="anaSayfa">
+    <div style="display:flex; justify-content:center; margin:10px;">
+        <a style="padding:10px; color:black;" class="btn btn-warning" href="/Home/parcaAra"><i class="fa-solid fa-magnifying-glass"></i>Parça Ara</a>
+    </div>
+    <table>
+        <div class="container">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-3 col-md-2 col-sm-7 col-12 mb-3">
+                        <div class="card">
+                            <img class="card-img-top" src="@item.parcaImage" alt="Card image cap">
+                            <div class="card-body">
+                                <p>@item.tbl_AracMarka.markaAdi + @item.tbl_AracModel.modelAdi</p>
+                                Orginal No:<h1>@item.orginalKod</h1>
+                                Üretici Kod:<h5>@item.ureticiKod</h5>
+                                <h5 class="card-title">@item.pAd</h5>
+                                <h4 style="color:green;">@item.satisFiyat TL</h4>
+                                <p>Stok son : <strong style="color:red">@item.stokMiktari</strong> Adet</p>
+                                <a href="/UrunDetay/UrunDetayListele/@item.parcaID" style="color:black;" class="btn btn-warning">Ürüne Git</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </table>
+</div>
+

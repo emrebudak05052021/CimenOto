@@ -1,0 +1,78 @@
+﻿@using cimenOtoV11.Models
+@model SiparisDetayViewModel
+@{
+    ViewBag.Title = "siparisDetay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <table class="table-bordered" style="color:white; width:100%;">
+        <tr>
+            <td>Sipariş Detay No:</td>
+            <td>@Model.SiparisDetay.siparisDetayID</td>
+        </tr>
+        <tr>
+            <td>Sipariş No:</td>
+            <td>@Model.Siparis.siparisID</td>
+        </tr>
+        <tr>
+            <td>Parça:</td>
+            <td>
+                @Model.Parca | @Model.Parca.pAd | @Model.Parca.aciklama |
+                ORG:<strong style="color:#ffc300">@Model.Parca.orginalKod</strong> |
+                ÜRT: @Model.Parca.ureticiKod
+            </td>
+        </tr>
+        <tr>
+            <td>Müşteri Adı:</td>
+            <td>@Model.Musteri.ad @Model.Musteri.soyad</td>
+        </tr>
+        <tr>
+            <td>Müşteri İletişimi:</td>
+            <td>
+                @Model.Musteri.eMail |
+                <strong style="color:#ffc300">@Model.Musteri.telNo</strong>
+            </td>
+        </tr>
+        <tr>
+            <td>Adres:</td>
+            <td>
+                @Model.SiparisDetay.tbl_Adres.il | @Model.SiparisDetay.tbl_Adres.ilce |
+                @Model.SiparisDetay.tbl_Adres.adresSatir1 @Model.SiparisDetay.tbl_Adres.adresSatir2 |
+                @Model.SiparisDetay.tbl_Adres.postaKodu
+            </td>
+        </tr>
+        <tr>
+            <td>Miktar:</td>
+            <td><strong style="color:#ffc300">@Model.SiparisDetay.miktar</strong></td>
+        </tr>
+        <tr>
+            <td>Toplam Tutar:</td>
+            <td>@Model.SiparisDetay.toplamTutar TL</td>
+        </tr>
+    </table>
+
+    <div class="row">
+        @foreach (var item in Model.Parcalar) // Model.Parcalar listesi üzerinden dönüyoruz
+        {
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-3">
+                <div class="card">
+                    <img style="width:200px; height:150px;" class="card-img-top"
+                         src="@item.parcaImage" alt="Card image cap"
+                         onerror="this.onerror=null;this.src='/Content/images/parca.png';">
+                    <div class="card-body">
+                        <p>Araç Marka: <strong>@item.tbl_AracMarka.markaAdi</strong></p>
+                        <p>Araç Modeli: <strong>@item.modelID</strong></p>
+                        <strong>Orijinal No: <h1>@item.orginalKod</h1></strong>
+                        <p>Üretici Kod: <strong>@item.ureticiKod</strong></p>
+                        <h2 class="card-title">@item.pAd</h2>
+                        <h4 style="color:green;">@item.kdvMaliyet TL</h4>
+                        <a style="color:black;" href="/UrunDetay/UrunDetayListele/@item.parcaID" class="btn btn-warning">Ürüne Git</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+

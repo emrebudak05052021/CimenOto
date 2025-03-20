@@ -1,0 +1,93 @@
+﻿@using cimenOtoV11.Models
+@model tbl_AracParca
+@{
+    ViewBag.Title = "Yedek Parça Detayı | Oto Yedek Parça | Çimen Oto";
+    <link rel="icon" type="image/png" href="~/Content/images/logo.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<div class="urunDetay-container" style="justify-content:center; align-items:center; overflow-x:auto; max-width:100%; padding:15px;">
+    <h3 style="color:#ffc300;">PARÇA DETAYLARI</h3>
+    <table style="color:black; width:100%; table-layout:fixed; word-wrap:break-word;" class="table table-bordered table-dark table-striped">
+        <thead>
+            <tr style="color:white;">
+                <th>Marka</th>
+                <th>Model</th>
+                <th>Üretici</th>
+                <th style="color:red;">OEM</th>
+                <th>Parça</th>
+                <th>Açıklama</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-light">
+                <th>@Model.tbl_AracMarka.markaAdi</th>
+                <th>@Model.modelID</th>
+                <th>@Model.ureticiKod</th>
+                <th>@Model.orginalKod</th>
+                <th>@Model.pAd</th>
+                <th>@Model.aciklama</th>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3 style="color:#ffc300;">DİĞER DETAYLAR</h3>
+    <table style="color:black; width:100%; table-layout:fixed; word-wrap:break-word;" class="table table-bordered table-dark table-striped">
+        <thead>
+            <tr style="color:white;">
+                <th>İçerik</th>
+                <th>Motor Tipi</th>
+                <th>Yıl</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-light">
+                <th>@Model.icerik</th>
+                <th>@Model.motorTip</th>
+                <th>@Model.yil</th>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3 style="color:#ffc300;">PARÇA FİYAT DETAYLARI</h3>
+    <table style="color:black; width:100%; table-layout:fixed; word-wrap:break-word;" class="table table-bordered table-dark table-striped">
+        <thead>
+            <tr style="color:white;">
+                <th>İskonto</th>
+                <th>KDV</th>
+                <th style="color:lawngreen">FİYAT</th>
+                <th>Stok miktarı</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-light">
+                <th>@Model.isk</th>
+                <th>%@Model.kdv</th>
+                <th>@Model.kdvMaliyet</th>
+                <th>@Model.stokMiktari</th>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="urunDetay" style="justify-content:center;">
+        <form action="/UrunDetay/sepeteEkle" method="post">
+
+            <div>
+                <h3 style="color:#ffc300;">Parça Görseli</h3>
+                <img style="width:100%; max-width:200px; height:auto; max-height:150px;" class="card-img-top" src="@Model.parcaImage" alt="Card image cap" onerror="this.onerror=null;this.src='/Content/images/parca.png';">
+            </div>
+            <div>
+                <input type="hidden" name="parcaID" value="@Model.parcaID" /> <!-- parcaID'yi gizli alan olarak ekleyin -->
+                <h4 style="color:#ffc300;">Sipariş Adeti:</h4><input style="color:black;" type="number" name="adet" value="1" min="1" required />
+            </div>
+            <div style="margin-top:15px;">
+                <button style="color:black;" class="btn btn-success">Hemen Al</button>
+                <!-- Sepete Ekle butonu POST isteği ile formu gönderir -->
+                <button type="submit" style="color:black;" class="btn btn-warning">Sepete Ekle</button>
+            </div>
+        </form>
+    </div>
+</div>
